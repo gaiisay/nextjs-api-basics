@@ -1,0 +1,20 @@
+[
+  {
+    "id": "C025E274-F905-4D76-87C1-00FFDFA53E6C",
+    "text": "Why is 6 afraid of 7? - Because 7 8 9.",
+    "author": "me",
+    "categories": ["Math", "Dad joke"]
+  },
+  {
+    "id": "02336A66-3600-4DBF-A29C-E82402F723B9",
+    "text": "What do you call a fake noodle? - Impasta.",
+    "author": "me",
+    "categories": ["Food"]
+  },
+  {
+    "id": "6134A974-9FA4-4DD2-B6C7-89E8AF4F7767",
+    "text": "How do pandas scare each other on Halloween? - Bam-BOO!",
+    "author": "me",
+    "categories": ["Animals"]
+  }
+]
