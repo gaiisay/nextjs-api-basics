@@ -4,10 +4,11 @@ import useSWR from "swr";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const fetcher = (url) => fetch(url, { method: "GET" }).then((res) => res.json());
 
   const { data: jokes, error } = useSWR("/api/jokes", fetcher);
-  console.log(jokes);
+  if (error) return <h1>There was an error</h1>;
+  if (!jokes) return <h1>...Loading...</h1>;
 
   return (
     <div className={styles.container}>
@@ -27,7 +28,7 @@ export default function Home() {
                 <h2>{joke.text}</h2>
                 <hr />
                 <p>written by: {joke.author}</p>
-                <p>categories: {joke.categories}</p>
+                <p>categories: {joke.categories.join(", ")}</p>
               </div>
             );
           })}
