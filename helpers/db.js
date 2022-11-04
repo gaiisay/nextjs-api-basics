@@ -1,4 +1,5 @@
 import mongoose, { Schema, model, models } from "mongoose";
+import crypto from "crypto";
 
 const URI = `mongodb+srv://gaiisay:${process.env.MONGODB_PASSWORD}@cluster0.iptgkab.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -22,4 +23,19 @@ async function getAllJokes() {
   return jokes;
 }
 
-export { getAllJokes };
+async function createJoke(joke) {
+  await connectToDatabase();
+
+  const createdJoke = await Joke.create({
+    ...joke,
+    id: crypto.randomUUID(),
+  });
+
+  return {
+    ...createdJoke.toObject(),
+    _id: undefined,
+    __v: undefined,
+  };
+}
+
+export { getAllJokes, createJoke };

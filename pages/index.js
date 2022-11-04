@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import useSWR from "swr";
 import styles from "../styles/Home.module.css";
 
@@ -33,6 +34,8 @@ export default function Home() {
             );
           })}
         </div>
+
+        <Link href="/createNewJoke">Create a new joke 🃏</Link>
       </main>
 
       <footer className={styles.footer}>
