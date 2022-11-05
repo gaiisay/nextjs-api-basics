@@ -23,6 +23,29 @@ async function getAllJokes() {
   return jokes;
 }
 
+async function getJokeById(id) {
+  await connectToDatabase();
+
+  const joke = Joke.findOne({ id }, { _id: false, __v: false });
+  return joke;
+}
+
+async function updateJokeById(id, joke) {
+  await connectToDatabase();
+  await Joke.updateOne({ id }, joke);
+  const updatedJoke = await getJokeById(id);
+  return updatedJoke;
+}
+
+async function deleteJokeById(id) {
+  connectToDatabase();
+
+  const joke = getJokeById(id);
+  await Joke.deleteOne({ id });
+
+  return joke;
+}
+
 async function createJoke(joke) {
   await connectToDatabase();
 
@@ -38,4 +61,4 @@ async function createJoke(joke) {
   };
 }
 
-export { getAllJokes, createJoke };
+export { getAllJokes, createJoke, getJokeById, updateJokeById, deleteJokeById };

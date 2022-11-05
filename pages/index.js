@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const fetcher = (url) => fetch(url, { method: "GET" }).then((res) => res.json());
 
-  const { data: jokes, error } = useSWR("/api/jokes", fetcher);
+  const { data: jokes, error } = useSWR("/api/jokes", fetcher, { revalidateOnMount: true });
   if (error) return <h1>There was an error</h1>;
   if (!jokes) return <h1>...Loading...</h1>;
 
@@ -25,12 +25,12 @@ export default function Home() {
         <div className={styles.grid}>
           {jokes.map((joke) => {
             return (
-              <div className={styles.card} key={joke.id}>
+              <Link className={styles.card} key={joke.id} href={`/jokes/${joke.id}/edit`}>
                 <h2>{joke.text}</h2>
                 <hr />
                 <p>written by: {joke.author}</p>
                 <p>categories: {joke.categories.join(", ")}</p>
-              </div>
+              </Link>
             );
           })}
         </div>
